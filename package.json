@@ -1,0 +1,91 @@
+{
+  "name": "armeiro",
+  "version": "1.0.0",
+  "description": "Armeiro é uma ferrementa de automatização de tarefas relacionadas ao desenvolvimento front-end.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/belchior/armeiro.git"
+  },
+  "keywords": [
+    "gulp", "compile", "concat", "compress", "sprite", "watch", "clear"
+  ],
+  "author": "Belchior Oliveira",
+  "license": "MIT",
+  "devDependencies": {
+    "del": "^1.2.1",
+    "glob": "^5.0.14",
+    "gulp": "^3.9.0",
+    "gulp-coffee": "^2.3.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-imagemin": "^2.3.0",
+    "gulp-less": "^3.0.3",
+    "gulp-minify-css": "^1.2.0",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.6",
+    "gulp.spritesmith": "^4.0.0",
+    "imagemin-optipng": "^4.3.0"
+  },
+  "armeiro": {
+    "js": {
+      "orig": [
+        "src/js/**/*.js"
+      ],
+      "dest": "build/",
+      "mainFile": "script.js",
+      "mainFileCompressed": "script.min.js"
+    },
+    "coffee": {
+      "orig": [
+        "src/coffee/**/*.coffee"
+      ],
+      "dest": "build/",
+      "mainFile": "script.coffee.js",
+      "mainFileCompressed": "script.coffee.min.js"
+    },
+    "css": {
+      "orig": [
+        "src/css/**/*.css"
+      ],
+      "dest": "build/",
+      "mainFile": "style.css",
+      "mainFileCompressed": "style.min.js"
+    },
+    "less": {
+      "orig": [
+        "src/less/**/*.less"
+      ],
+      "dest": "build/",
+      "mainFile": "style.less.css",
+      "mainFileCompressed": "style.less.min.js"
+    },
+    "sass": {
+      "orig": [
+        "src/sass/**/*.{sass,scss}"
+      ],
+      "dest": "build/",
+      "mainFile": "style.sass.css",
+      "mainFileCompressed": "style.sass.min.js"
+    },
+    "images": {
+      "orig": [
+        "src/img/**/*.{gif,jpg,jpeg,png}",
+        "!src/img/sprite/*"
+      ],
+      "dest": "build/"
+    },
+    "sprite": {
+      "orig": [
+        "src/img/sprite/**/*.{gif,jpg,jpeg,png}"
+      ],
+      "dest": "build/",
+      "name": "sprite.png",
+      "cssName": "_sprite.less"
+    }
+  }
+}
