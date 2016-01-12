@@ -1,12 +1,15 @@
 
 var armeiro = require('./armeirorc.js');
-// var browserSync = require('browser-sync').create();
 var gulp = require('gulp');
-var proxyOptions = {};
+var proxyOptions = {
+  files: [
+    armeiro.browsersync.dest
+  ]
+};
 var serverOptions = {
   open: false,
   server: {
-    baseDir: 'build'
+    baseDir: armeiro.browsersync.dest
   },
   files: [
     armeiro.css.dest + '*.css',
