@@ -1,9 +1,4 @@
 
-// var del = require('del');
-// var glob = require('glob');
-// var gutil = require('gulp-util');
-// var path = require('path');
-
 module.exports = deleteFiles;
 
 function deleteFiles(obj) {

@@ -134,14 +134,14 @@ gulp concat:[option]
 Remove os arquivos contidos no diretório `armeiro.[module].dest` considerando apenas os arquivos que foram mapeados em `armeiro.[module].orig`
 
 ```shell
-[option]: coffee, images, svg, css, js, less, sass
+# [option]: coffee, images, svg, css, js, less, sass
 gulp delete:[option]
 ```
 #### watch
 Permanece escutando alterações em arquivos mapeados em `armeiro.[module].orig` e executa o comando segundo as opções
 
 ```shell
-[option]: [module]:build, [module]:compress, [module]:concat
+# [option]: [module]:build, [module]:compress, [module]:concat
 gulp watch:[option]
 
 # example
@@ -152,6 +152,10 @@ gulp watch:sass:compile
 ```shell
 # documentation
 gulp doc
+
+# browser-sync
+gulp browsersync:proxy
+gulp browsersync:server
 
 # build
 gulp build:coffee
@@ -190,11 +194,29 @@ gulp delete:css
 gulp delete:js
 gulp delete:less
 gulp delete:sass
+gulp delete:sprite
 
 # watch
-gulp watch:[module]:build
-gulp watch:[module]:compress
-gulp watch:[module]:concat
+gulp watch:coffee:build
+gulp watch:coffee:compile
+gulp watch:coffee:compress
+gulp watch:coffee:concat
+gulp watch:css:build
+gulp watch:css:compress
+gulp watch:css:concat
+gulp watch:images
+gulp watch:js:build
+gulp watch:js:compress
+gulp watch:js:concat
+gulp watch:less:build
+gulp watch:less:compile
+gulp watch:less:compress
+gulp watch:less:concat
+gulp watch:sass:build
+gulp watch:sass:compile
+gulp watch:sass:compress
+gulp watch:sass:concat
+gulp watch:svg
 ```
 ## Agradecimentos
 Este projeto é uma pequena retribuição a fantástica comunidade JavaScript, sem ela este projeto não seria possível. s2 ;-)

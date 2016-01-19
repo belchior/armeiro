@@ -1,6 +1,5 @@
 
 var armeiro = require('./armeirorc.js');
-// var connect = require('gulp-connect');
 var gulp = require('gulp');
 
 gulp.task('connect', function () {

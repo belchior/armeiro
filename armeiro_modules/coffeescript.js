@@ -1,10 +1,6 @@
+
 var armeiro = require('./armeirorc.js');
-// var coffee = require('gulp-coffee');
-// var concat = require('gulp-concat');
-// var deleteFiles = require('./deleteFiles.js');
 var gulp = require('gulp');
-// var sourcemaps = require('gulp-sourcemaps');
-// var uglify = require('gulp-uglify');
 
 gulp.task('build:coffee', function () {
   var coffee = require('gulp-coffee');
@@ -54,7 +50,7 @@ gulp.task('concat:coffee', function () {
 
 gulp.task('delete:coffee', function () {
   var deleteFiles = require('./deleteFiles.js');
-  
+
   deleteFiles({
     orig: armeiro.coffee.orig,
     dest: armeiro.coffee.dest,

@@ -1,9 +1,6 @@
 
 var armeiro = require('./armeirorc.js');
-// var deleteFiles = require('./deleteFiles.js');
 var gulp = require('gulp');
-// var imagemin = require('gulp-imagemin');
-// var imageminOptipng = require('imagemin-optipng');
 
 gulp.task('compress:images', function () {
   var imagemin = require('gulp-imagemin');

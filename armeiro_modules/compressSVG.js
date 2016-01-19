@@ -1,8 +1,6 @@
 
 var armeiro = require('./armeirorc.js');
-// var deleteFiles = require('./deleteFiles.js');
 var gulp = require('gulp');
-// var imageminSvgo = require('imagemin-svgo');
 
 gulp.task('compress:svg', function () {
   var imageminSvgo = require('imagemin-svgo');

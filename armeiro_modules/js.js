@@ -1,10 +1,6 @@
 
 var armeiro = require('./armeirorc.js');
-// var concat = require('gulp-concat');
-// var deleteFiles = require('./deleteFiles.js');
 var gulp = require('gulp');
-// var sourcemaps = require('gulp-sourcemaps');
-// var uglify = require('gulp-uglify');
 
 gulp.task('build:js', function () {
   var concat = require('gulp-concat');

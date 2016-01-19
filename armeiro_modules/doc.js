@@ -7,6 +7,10 @@ gulp.task('doc:help', function () {
   # documentation\n\
   gulp doc\n\
   \n\
+  # browser-sync\n\
+  gulp browsersync:proxy\n\
+  gulp browsersync:server\n\
+  \n\
   # build\n\
   gulp build:coffee\n\
   gulp build:css\n\
@@ -19,7 +23,7 @@ gulp.task('doc:help', function () {
   gulp compile:coffee\n\
   gulp compile:less\n\
   gulp compile: sass\n\
-   \n\
+  \n\
   # compress\n\
   gulp compress:coffee\n\
   gulp compress:images\n\
@@ -44,11 +48,29 @@ gulp.task('doc:help', function () {
   gulp delete:js\n\
   gulp delete:less\n\
   gulp delete:sass\n\
+  gulp delete:sprite\n\
   \n\
   # watch\n\
-  gulp watch:[module]:build\n\
-  gulp watch:[module]:compress\n\
-  gulp watch:[module]:concat\n\
+  gulp watch:coffee:build\n\
+  gulp watch:coffee:compile\n\
+  gulp watch:coffee:compress\n\
+  gulp watch:coffee:concat\n\
+  gulp watch:css:build\n\
+  gulp watch:css:compress\n\
+  gulp watch:css:concat\n\
+  gulp watch:images\n\
+  gulp watch:js:build\n\
+  gulp watch:js:compress\n\
+  gulp watch:js:concat\n\
+  gulp watch:less:build\n\
+  gulp watch:less:compile\n\
+  gulp watch:less:compress\n\
+  gulp watch:less:concat\n\
+  gulp watch:sass:build\n\
+  gulp watch:sass:compile\n\
+  gulp watch:sass:compress\n\
+  gulp watch:sass:concat\n\
+  gulp watch:svg\n\
   ';
 
   console.log(doc);
