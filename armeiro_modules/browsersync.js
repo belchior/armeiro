@@ -7,12 +7,21 @@ gulp.task('browsersync:proxy', function () {
 
   browserSync.init({
     open: false,
+    proxy: armeiro.browsersync.url
     serveStatic: [
       armeiro.browsersync.dest
     ],
     files: [
       armeiro.csbrowsersyncs.dest + '*.css',
       armeiro.browsersync.dest + '*.js'
+    ],
+    rewriteRules: [
+      {
+        match: /Browsersync/g,
+        fn: function (match) {
+          return 'kittenz';
+        }
+      }
     ]
   });
 });

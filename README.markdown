@@ -3,7 +3,7 @@ Armeiro é uma ferramenta de automatização de tarefas relacionadas ao desenvol
 
 ![armeiro](https://raw.githubusercontent.com/belchior/armeiro/master/armeiro.gif)
 ## Pré-requisitos
-Para a utilização desse projeto é necessário ter instalado em seu computador o NodeJS ou io.js e NPM;
+Para a utilização desse projeto é necessário ter instalado em seu computador o NodeJS e NPM;
 
 Ter familiaridade com command-line (ferramenta de linha de comando) como o Terminal no Mac OS X e distribuições Linux ou o CMD do Windows.
 ## Instalando Armeiro
@@ -20,16 +20,16 @@ Para tornar um modulo disponível é necessário incluir-lo como uma dependênci
 
 Modulo          | Comando para instalar as dependências do modulo
 --------------- | ---------------------------------------------------
-browsersync     | npm i --save-dev gulp browser-sync
-coffeescript    | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-uglify gulp-coffee
-compressImages  | npm i --save-dev gulp gulp-util del glob gulp-imagemin imagemin-optipng
-compressSVG     | npm i --save-dev gulp gulp-util del glob imagemin-svgo
-css             | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-minify-css
-js              | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-uglify
-less            | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-minify-css gulp-less
-livereload      | npm i --save-dev gulp gulp-util gulp-connect
-sass            | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-minify-css gulp-sass
-sprite          | npm i --save-dev gulp gulp-util del gulp.spritesmith
+[browsersync](https://github.com/belchior/armeiro/blob/master/doc/browsersync.markdown)     | npm i --save-dev gulp browser-sync
+[coffeescript](https://github.com/belchior/armeiro/blob/master/doc/coffeescript.markdown)    | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-uglify gulp-coffee
+[compressImages](https://github.com/belchior/armeiro/blob/master/doc/compressImages.markdown)  | npm i --save-dev gulp gulp-util del glob gulp-imagemin imagemin-optipng
+[compressSVG](https://github.com/belchior/armeiro/blob/master/doc/compressSVG.markdown)     | npm i --save-dev gulp gulp-util del glob imagemin-svgo
+[css](https://github.com/belchior/armeiro/blob/master/doc/css.markdown)             | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-minify-css
+[js](https://github.com/belchior/armeiro/blob/master/doc/js.markdown)              | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-uglify
+[less](https://github.com/belchior/armeiro/blob/master/doc/less.markdown)            | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-minify-css gulp-less
+[livereload](https://github.com/belchior/armeiro/blob/master/doc/livereload.markdown)      | npm i --save-dev gulp gulp-util gulp-connect
+[sass](https://github.com/belchior/armeiro/blob/master/doc/sass.markdown)            | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-minify-css gulp-sass
+[sprite](https://github.com/belchior/armeiro/blob/master/doc/sprite.markdown)          | npm i --save-dev gulp gulp-util del gulp.spritesmith
 
 Como resultado final seu arquivo package.json vai conter algo parecido com o abaixo
 
@@ -60,16 +60,16 @@ Armeiro usa o arquivo package.json para armazenar algumas configurações do pro
   "...",
   "armeiro": {
     "js": {
-      "orig": ["src/js/*"],
+      "orig": [“src/js/*.js"],
       "dest": "build/",
       "mainFile": "script.js",
       "mainFileCompressed": "script.min.js"
     },
-    "less": {
-      "orig": ["src/less/**/*.less"],
+    "sass": {
+      "orig": ["src/sass/**/*.scss"],
       "dest": "build/",
-      "mainFile": "style.less.css",
-      "mainFileCompressed": "style.min.less.css"
+      "mainFile": "style.scss.css",
+      "mainFileCompressed": "style.min.scss.css"
     },
     "..."
   },
@@ -77,6 +77,7 @@ Armeiro usa o arquivo package.json para armazenar algumas configurações do pro
 }
 ```
 
+Para mais informações de como mapear os diretórios e arquivos consulte o modulo correspondente em [Modulos](https://github.com/belchior/armeiro#modulos)
 #### Listando arquivos e diretórios
 Armeiro usa [node-glob](https://github.com/isaacs/node-glob) para fazer o carregamentos dos arquivos e [gulp](https://github.com/gulpjs/gulp) para executar os comando.
 
@@ -98,11 +99,11 @@ Abaixo possui alguns exemplos de carregamentos.
 // Mapeando diferentes diretórios
 "orig": [
   "src/images/*.{gif,jpg,png}",
-  "src/icons/*.png"
+  "src/svg/*.svg"
 ]
 ```
 ## Lista de Comandos
-Todos os comando usam o objeto `armeiro.[module].orig` para carregar arquivos e salva  no diretório definido em `armeiro.[module].dest`. Consulte os [Modulos](https://github.com/belchior/armeiro#modulos) disponível para mais informações.
+O Armeiro tem como padrão carregar os arquivos mapeados em  `armeiro.[module].orig` executar uma transformação  e salvar o resultado em `armeiro.[module].dest`. Consulte os [Modulos](https://github.com/belchior/armeiro#modulos) disponível para mais informações.
 #### build
 Este comando irá concatenar e depois comprimir os arquivos  e como resultado será gerado um arquivo nomeado em `armeiro.[module].mainFileCompressed` e salvo no diretório definido em `armeiro.[module].dest`.
 ```shell
@@ -110,7 +111,7 @@ Este comando irá concatenar e depois comprimir os arquivos  e como resultado se
 gulp build:[option]
 ```
 #### compile
-Compila arquivos baseado nas seguintes opções
+Compila arquivos mapeados em `armeiro.[module].orig` e salva o arquivo gerado em `armeiro.[module].dest` usando as seguintes opções
 
 ```shell
 # [options]: coffee, less, sass
@@ -145,7 +146,7 @@ Permanece escutando alterações em arquivos mapeados em `armeiro.[module].orig`
 gulp watch:[option]
 
 # example
-gulp watch:css:compress
+gulp watch:js:concat
 gulp watch:sass:compile
 ```
 ## Lista completa de comandos
