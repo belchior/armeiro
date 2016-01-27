@@ -7,7 +7,7 @@ gulp.task('browsersync:proxy', function () {
 
   browserSync.init({
     open: false,
-    proxy: armeiro.browsersync.url
+    proxy: armeiro.browsersync.url,
     serveStatic: [
       armeiro.browsersync.dest
     ],
