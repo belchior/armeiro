@@ -60,7 +60,7 @@ Armeiro usa o arquivo package.json para armazenar algumas configurações do pro
   "...",
   "armeiro": {
     "js": {
-      "orig": [“src/js/*.js"],
+      "orig": ["src/js/*.js"],
       "dest": "build/",
       "mainFile": "script.js",
       "mainFileCompressed": "script.min.js"
