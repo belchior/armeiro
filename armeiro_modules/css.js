@@ -4,24 +4,24 @@ var gulp = require('gulp');
 
 gulp.task('build:css', function () {
   var concat = require('gulp-concat');
-  var minifyCss = require('gulp-minify-css');
+  var cssnano = require('gulp-cssnano');
   var sourcemaps = require('gulp-sourcemaps');
 
   return gulp.src(armeiro.css.orig)
   .pipe(concat(armeiro.css.mainFileCompressed))
   .pipe(sourcemaps.init())
-  .pipe(minifyCss())
+  .pipe(cssnano())
   .pipe(sourcemaps.write('map'))
   .pipe(gulp.dest(armeiro.css.dest));
 });
 
 gulp.task('compress:css', function () {
-  var minifyCss = require('gulp-minify-css');
+  var cssnano = require('gulp-cssnano');
   var sourcemaps = require('gulp-sourcemaps');
 
   return gulp.src(armeiro.css.orig)
   .pipe(sourcemaps.init())
-  .pipe(minifyCss())
+  .pipe(cssnano())
   .pipe(sourcemaps.write('map'))
   .pipe(gulp.dest(armeiro.css.dest));
 });

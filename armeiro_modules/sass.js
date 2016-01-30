@@ -4,7 +4,7 @@ var gulp = require('gulp');
 
 gulp.task('build:sass', function () {
   var concat = require('gulp-concat');
-  var minifyCss = require('gulp-minify-css');
+  var cssnano = require('gulp-cssnano');
   var sass = require('gulp-sass');
   var sourcemaps = require('gulp-sourcemaps');
 
@@ -12,14 +12,14 @@ gulp.task('build:sass', function () {
   .pipe(sass.sync().on('error', sass.logError))
   .pipe(concat(armeiro.sass.mainFileCompressed))
   .pipe(sourcemaps.init())
-  .pipe(minifyCss())
+  .pipe(cssnano())
   .pipe(sourcemaps.write('map'))
   .pipe(gulp.dest(armeiro.sass.dest));
 });
 
 gulp.task('compile:sass', function () {
   var concat = require('gulp-concat');
-  var minifyCss = require('gulp-minify-css');
+  var cssnano = require('gulp-cssnano');
   var sass = require('gulp-sass');
   var sourcemaps = require('gulp-sourcemaps');
 
@@ -29,14 +29,14 @@ gulp.task('compile:sass', function () {
 });
 
 gulp.task('compress:sass', function () {
-  var minifyCss = require('gulp-minify-css');
+  var cssnano = require('gulp-cssnano');
   var sass = require('gulp-sass');
   var sourcemaps = require('gulp-sourcemaps');
 
   return gulp.src(armeiro.sass.orig)
   .pipe(sass.sync().on('error', sass.logError))
   .pipe(sourcemaps.init())
-  .pipe(minifyCss())
+  .pipe(cssnano())
   .pipe(sourcemaps.write('map'))
   .pipe(gulp.dest(armeiro.sass.dest));
 });

@@ -24,11 +24,11 @@ Modulo          | Comando para instalar as dependências do modulo
 [coffeescript](https://github.com/belchior/armeiro/blob/master/doc/coffeescript.markdown)    | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-uglify gulp-coffee
 [compressImages](https://github.com/belchior/armeiro/blob/master/doc/compressImages.markdown)  | npm i --save-dev gulp gulp-util del glob gulp-imagemin imagemin-optipng
 [compressSVG](https://github.com/belchior/armeiro/blob/master/doc/compressSVG.markdown)     | npm i --save-dev gulp gulp-util del glob imagemin-svgo
-[css](https://github.com/belchior/armeiro/blob/master/doc/css.markdown)             | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-minify-css
+[css](https://github.com/belchior/armeiro/blob/master/doc/css.markdown)             | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-cssnano
 [js](https://github.com/belchior/armeiro/blob/master/doc/js.markdown)              | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-uglify
-[less](https://github.com/belchior/armeiro/blob/master/doc/less.markdown)            | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-minify-css gulp-less
+[less](https://github.com/belchior/armeiro/blob/master/doc/less.markdown)            | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-cssnano gulp-less
 [livereload](https://github.com/belchior/armeiro/blob/master/doc/livereload.markdown)      | npm i --save-dev gulp gulp-util gulp-connect
-[sass](https://github.com/belchior/armeiro/blob/master/doc/sass.markdown)            | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-minify-css gulp-sass
+[sass](https://github.com/belchior/armeiro/blob/master/doc/sass.markdown)            | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-cssnano gulp-sass
 [sprite](https://github.com/belchior/armeiro/blob/master/doc/sprite.markdown)          | npm i --save-dev gulp gulp-util del gulp.spritesmith
 
 Como resultado final seu arquivo package.json vai conter algo parecido com o abaixo

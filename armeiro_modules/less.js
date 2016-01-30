@@ -1,18 +1,23 @@
 
 var armeiro = require('./armeirorc.js');
 var gulp = require('gulp');
+var gutil = require('gulp-util');
+var errorHandler = function (err) {
+  gutil.log(gutil.colors.red('ERROR', 'compile:less'), err);
+  this.emit('end', new gutil.PluginError('compile:less', err, { showStack: false }));
+};
 
 gulp.task('build:less', function () {
   var concat = require('gulp-concat');
   var less = require('gulp-less');
-  var minifyCss = require('gulp-minify-css');
+  var cssnano = require('gulp-cssnano');
   var sourcemaps = require('gulp-sourcemaps');
 
   return gulp.src(armeiro.less.orig)
-  .pipe(less())
+  .pipe(less().on('error', errorHandler))
   .pipe(concat(armeiro.less.mainFileCompressed))
   .pipe(sourcemaps.init())
-  .pipe(minifyCss())
+  .pipe(cssnano())
   .pipe(sourcemaps.write('map'))
   .pipe(gulp.dest(armeiro.less.dest));
 });
@@ -21,19 +26,19 @@ gulp.task('compile:less', function () {
   var less = require('gulp-less');
 
   return gulp.src(armeiro.less.orig)
-  .pipe(less())
+  .pipe(less().on('error', errorHandler))
   .pipe(gulp.dest(armeiro.less.dest));
 });
 
 gulp.task('compress:less', function () {
   var less = require('gulp-less');
-  var minifyCss = require('gulp-minify-css');
+  var cssnano = require('gulp-cssnano');
   var sourcemaps = require('gulp-sourcemaps');
 
   return gulp.src(armeiro.less.orig)
-  .pipe(less())
+  .pipe(less().on('error', errorHandler))
   .pipe(sourcemaps.init())
-  .pipe(minifyCss())
+  .pipe(cssnano())
   .pipe(sourcemaps.write('map'))
   .pipe(gulp.dest(armeiro.less.dest));
 });
@@ -43,7 +48,7 @@ gulp.task('concat:less', function () {
   var less = require('gulp-less');
 
   return gulp.src(armeiro.less.orig)
-  .pipe(less())
+  .pipe(less().on('error', errorHandler))
   .pipe(concat(armeiro.less.mainFile))
   .pipe(gulp.dest(armeiro.less.dest));
 });
