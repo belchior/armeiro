@@ -35,8 +35,8 @@ gulp.task('browsersync:server', function () {
       baseDir: armeiro.browsersync.dest
     },
     files: [
-      armeiro.css.dest + '*.css',
-      armeiro.js.dest + '*.js'
+      armeiro.browsersync.dest + '*.css',
+      armeiro.browsersync.dest + '*.js'
     ]
   });
 });
