@@ -6,7 +6,7 @@
   "armeiro": {
     "copy": {
       "orig": [
-        “src/js/vendor/*.js”
+        "src/js/vendor/*.js"
       ],
       "dest": "build/"
     }
