@@ -1,15 +1,13 @@
 # copy
-## Mapeando arquivos e diretórios
+## Mapeando arquivos
 
 ```javascript
 {
   "armeiro": {
-    "copy": {
-      "orig": [
-        "src/js/vendor/*.js"
-      ],
-      "dest": "build/"
-    }
+    "copy": [
+      { "orig": "src/img/*.jpg", "dest": "build/" },
+      { "orig": "src/img/sprite/*.png", "dest": "build/sprite/" }
+    ]
   }
 }
 ```

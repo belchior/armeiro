@@ -7,20 +7,19 @@ gulp.task('copy', function () {
   var glob = require('glob');
   var path = require('path');
 
-  if (typeof armeiro.copy.orig === 'string') {
-    cp(armeiro.copy.orig, armeiro.copy.dest);
+  if (!Array.isArray(armeiro.copy)) {
+    return false;
+  }
 
-  } else if (Array.isArray(armeiro.copy.orig) && armeiro.copy.orig.length > 0) {
-    armeiro.copy.orig.forEach(function (pattern) {
-      glob(pattern, null, function (err, files) {
-        if (err) {
-          return false;
-        }
-        files.forEach(function (file) {
-          cp.sync(file, armeiro.copy.dest + path.basename(file));
-        });
+  return armeiro.copy.forEach(function (item) {
+    glob(item.orig, null, function (err, files) {
+      if (err) {
+        return false;
+      }
+      files.forEach(function (file) {
+        cp.sync(file, item.dest + path.basename(file));
       });
     });
-  }
+  });
 
 });

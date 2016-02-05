@@ -134,7 +134,7 @@ gulp concat:[option]
 ```
 
 #### copy
-Copia os arquivos mapeados em  `armeiro.[module].orig` para `armeiro.[module].dest`.
+Copia os arquivos de origem para o destino mapeados em  `armeiro.copy` .
 
 ```shell
 gulp copy
