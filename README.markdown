@@ -24,7 +24,7 @@ Modulo          | Comando para instalar as dependências do modulo
 [coffeescript](https://github.com/belchior/armeiro/blob/master/doc/coffeescript.markdown)    | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-uglify gulp-coffee
 [compressImages](https://github.com/belchior/armeiro/blob/master/doc/compressImages.markdown)  | npm i --save-dev gulp gulp-util del glob gulp-imagemin imagemin-optipng
 [compressSVG](https://github.com/belchior/armeiro/blob/master/doc/compressSVG.markdown)     | npm i --save-dev gulp gulp-util del glob imagemin-svgo
-[copy](https://github.com/belchior/armeiro/blob/master/doc/copy.markdown)             | npm i --save-dev gulp glob cp
+[copy](https://github.com/belchior/armeiro/blob/master/doc/copy.markdown)             | npm i --save-dev gulp gulp-util glob cp
 [css](https://github.com/belchior/armeiro/blob/master/doc/css.markdown)             | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-cssnano
 [js](https://github.com/belchior/armeiro/blob/master/doc/js.markdown)              | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-uglify
 [less](https://github.com/belchior/armeiro/blob/master/doc/less.markdown)            | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-cssnano gulp-less
@@ -40,7 +40,7 @@ Como resultado final seu arquivo package.json vai conter algo parecido com o aba
   "browser-sync": "^2.10.1",
   "gulp-less": "^3.0.3",
   "..."
-}
+},
 "..."
 ```
 
