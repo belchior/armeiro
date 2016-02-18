@@ -1,6 +1,8 @@
 # Armeiro
 Armeiro é uma ferramenta de automatização de tarefas relacionadas ao desenvolvimento front-end. Foi desenvolvida para trazer produtividade e qualidade de software e permitir que os devs tenham vida social.
 
+Este projeto usa [gulp](https://github.com/gulpjs/gulp) e [node-glob](https://github.com/isaacs/node-glob) então se você conhece estes projetos você já sabe usar o Armeiro.
+
 ![armeiro](https://raw.githubusercontent.com/belchior/armeiro/master/armeiro.gif)
 ## Pré-requisitos
 Para a utilização desse projeto é necessário ter instalado em seu computador o NodeJS e NPM;
@@ -44,7 +46,7 @@ Como resultado final seu arquivo package.json vai conter algo parecido com o aba
 "..."
 ```
 
-Todas as dependências serão baixadas e instaladas e assim que tudo estiver terminado o Armeiro estará pronto para fornecer armamento pesado para o seu projeto front-end.
+Assim que todas as dependências forem baixadas e instaladas o Armeiro estará pronto para fornecer armamento pesado para o seu projeto front-end.
 ## Setup
 Crie um arquivo chamado gulpfile.js na raiz do projeto com o seguinte conteúdo
 
@@ -78,11 +80,10 @@ Armeiro usa o arquivo package.json para armazenar algumas configurações do pro
 }
 ```
 
-Para mais informações de como mapear os diretórios e arquivos consulte o modulo correspondente em [Modulos](https://github.com/belchior/armeiro#modulos)
+Para mais informações consulte o modulo correspondente em [Modulos](https://github.com/belchior/armeiro#modulos)
 #### Listando arquivos e diretórios
-Armeiro usa [node-glob](https://github.com/isaacs/node-glob) para fazer o carregamentos dos arquivos e [gulp](https://github.com/gulpjs/gulp) para executar os comando.
 
-Abaixo possui alguns exemplos de carregamentos.
+Veja abaixo alguns exemplos de carregamentos.
 
 ```javascript
 // Dentro de cada modulo estará disponível um objeto armeiro, onde será
@@ -157,6 +158,46 @@ gulp watch:[option]
 gulp watch:js:concat
 gulp watch:sass:compile
 ```
+
+## Estendendo os modulos padrões
+É comum em projetos complexos ter necessidades que vão alêm das funcionalidades disponível por padrão.
+Neste caso é necessário estender essas funcionalidades e para isso é recomendado
+como boa prática, não alterar os módulos padrões e sim sobrescreve-los.
+
+Vamos fazer isso! Imagine que ao trabalhar com LESS os arquivos para escutar (`watch`)
+sejam diferentes dos arquivos que de fato serão compilados, podemos resolver essa questão da seguinte forma:
+
+No arquivos `package.json` inclua a propriedade watch como no exemplo abaixo.
+```javascript
+"armeiro": {
+  "less": {
+    "orig": [
+      "src/less/*.less"
+    ],
+    "watch": [
+      "src/less/**/*.less"
+    ],
+    "..."
+  }
+}
+```
+
+O arquivos `gulpfile.js` deve ficar parecido com o código a seguir.
+```javascript
+'use strict';
+
+var armeiro = require('./armeiro');
+var gulp = require('gulp');
+
+gulp.task('watch:less:compile', function () {
+  return gulp.watch(armeiro.less.watch, ['compile:less']);
+});
+```
+
+Note que já exite uma tarefa chamada *watch:less:compile* registrada porem como
+a tarefa foi definida depois do carregamento do Armeiro a nova sobrescreverá a
+tarefa antiga.
+
 ## Lista completa de comandos
 ```shell
 # documentation
@@ -195,7 +236,7 @@ gulp concat:js
 gulp concat:less
 gulp concat:sass
 
-copy
+# copy
 gulp copy
 
 # delete
@@ -230,6 +271,7 @@ gulp watch:sass:compress
 gulp watch:sass:concat
 gulp watch:svg
 ```
+
 ## Agradecimentos
 Este projeto é uma pequena retribuição a fantástica comunidade JavaScript, sem ela este projeto não seria possível. s2 ;-)
 ## Licença
