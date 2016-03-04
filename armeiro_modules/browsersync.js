@@ -12,6 +12,7 @@ gulp.task('browsersync:proxy', function () {
       armeiro.browsersync.dest
     ],
     files: [
+      armeiro.browsersync.dest + '*.html',
       armeiro.browsersync.dest + '*.css',
       armeiro.browsersync.dest + '*.js'
     ],

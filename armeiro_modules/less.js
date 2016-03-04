@@ -4,8 +4,8 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var errorHandler = function (err) {
   gutil.log(gutil.colors.red('ERROR', 'compile:less'), err);
-  this.emit('end', new gutil.PluginError('compile:less', err, { showStack: false }));
-};
+  this.emit('end', new gutil.PluginError('compile:less', err, {showStack: false}));
+}
 
 gulp.task('build:less', function () {
   var concat = require('gulp-concat');
@@ -14,9 +14,9 @@ gulp.task('build:less', function () {
   var sourcemaps = require('gulp-sourcemaps');
 
   return gulp.src(armeiro.less.orig)
+  .pipe(sourcemaps.init())
   .pipe(less().on('error', errorHandler))
   .pipe(concat(armeiro.less.mainFileCompressed))
-  .pipe(sourcemaps.init())
   .pipe(cssnano())
   .pipe(sourcemaps.write('map'))
   .pipe(gulp.dest(armeiro.less.dest));
@@ -24,9 +24,12 @@ gulp.task('build:less', function () {
 
 gulp.task('compile:less', function () {
   var less = require('gulp-less');
+  var sourcemaps = require('gulp-sourcemaps');
 
   return gulp.src(armeiro.less.orig)
+  .pipe(sourcemaps.init())
   .pipe(less().on('error', errorHandler))
+  .pipe(sourcemaps.write('map'))
   .pipe(gulp.dest(armeiro.less.dest));
 });
 
@@ -36,8 +39,8 @@ gulp.task('compress:less', function () {
   var sourcemaps = require('gulp-sourcemaps');
 
   return gulp.src(armeiro.less.orig)
-  .pipe(less().on('error', errorHandler))
   .pipe(sourcemaps.init())
+  .pipe(less().on('error', errorHandler))
   .pipe(cssnano())
   .pipe(sourcemaps.write('map'))
   .pipe(gulp.dest(armeiro.less.dest));
@@ -46,10 +49,13 @@ gulp.task('compress:less', function () {
 gulp.task('concat:less', function () {
   var concat = require('gulp-concat');
   var less = require('gulp-less');
+  var sourcemaps = require('gulp-sourcemaps');
 
   return gulp.src(armeiro.less.orig)
+  .pipe(sourcemaps.init())
   .pipe(less().on('error', errorHandler))
   .pipe(concat(armeiro.less.mainFile))
+  .pipe(sourcemaps.write('map'))
   .pipe(gulp.dest(armeiro.less.dest));
 });
 

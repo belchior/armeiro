@@ -8,8 +8,8 @@ gulp.task('build:js', function () {
   var uglify = require('gulp-uglify');
 
   return gulp.src(armeiro.js.orig)
-  .pipe(concat(armeiro.js.mainFileCompressed))
   .pipe(sourcemaps.init())
+  .pipe(concat(armeiro.js.mainFileCompressed))
   .pipe(uglify())
   .pipe(sourcemaps.write('map'))
   .pipe(gulp.dest(armeiro.js.dest));
@@ -28,9 +28,12 @@ gulp.task('compress:js', function () {
 
 gulp.task('concat:js', function () {
   var concat = require('gulp-concat');
+  var sourcemaps = require('gulp-sourcemaps');
 
   return gulp.src(armeiro.js.orig)
+  .pipe(sourcemaps.init())
   .pipe(concat(armeiro.js.mainFile))
+  .pipe(sourcemaps.write('map'))
   .pipe(gulp.dest(armeiro.js.dest));
 });
 

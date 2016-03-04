@@ -4,13 +4,13 @@
 ```javascript
 {
   "armeiro": {
-    "coffee": {
+    "coffeeScript": {
       "orig": [
         "src/coffee/**/*.coffee"
       ],
       "dest": "build/",
       "mainFile": "script.coffee.js",
-      "mainFileCompressed": “script.min.coffee.js”
+      "mainFileCompressed": "script.min.coffee.js"
     }
   }
 }

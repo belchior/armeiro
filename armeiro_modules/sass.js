@@ -9,9 +9,9 @@ gulp.task('build:sass', function () {
   var sourcemaps = require('gulp-sourcemaps');
 
   return gulp.src(armeiro.sass.orig)
+  .pipe(sourcemaps.init())
   .pipe(sass.sync().on('error', sass.logError))
   .pipe(concat(armeiro.sass.mainFileCompressed))
-  .pipe(sourcemaps.init())
   .pipe(cssnano())
   .pipe(sourcemaps.write('map'))
   .pipe(gulp.dest(armeiro.sass.dest));
@@ -24,7 +24,9 @@ gulp.task('compile:sass', function () {
   var sourcemaps = require('gulp-sourcemaps');
 
   return gulp.src(armeiro.sass.orig)
+  .pipe(sourcemaps.init())
   .pipe(sass.sync().on('error', sass.logError))
+  .pipe(sourcemaps.write('map'))
   .pipe(gulp.dest(armeiro.sass.dest));
 });
 
@@ -34,8 +36,8 @@ gulp.task('compress:sass', function () {
   var sourcemaps = require('gulp-sourcemaps');
 
   return gulp.src(armeiro.sass.orig)
-  .pipe(sass.sync().on('error', sass.logError))
   .pipe(sourcemaps.init())
+  .pipe(sass.sync().on('error', sass.logError))
   .pipe(cssnano())
   .pipe(sourcemaps.write('map'))
   .pipe(gulp.dest(armeiro.sass.dest));
@@ -44,10 +46,13 @@ gulp.task('compress:sass', function () {
 gulp.task('concat:sass', function () {
   var concat = require('gulp-concat');
   var sass = require('gulp-sass');
+  var sourcemaps = require('gulp-sourcemaps');
 
   return gulp.src(armeiro.sass.orig)
+  .pipe(sourcemaps.init())
   .pipe(sass.sync().on('error', sass.logError))
   .pipe(concat(armeiro.sass.mainFile))
+  .pipe(sourcemaps.write('map'))
   .pipe(gulp.dest(armeiro.sass.dest));
 });
 

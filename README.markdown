@@ -21,7 +21,7 @@ Para tornar um modulo disponível é necessário incluir-lo como uma dependênci
 Modulo          | Comando para instalar as dependências do modulo
 --------------- | ---------------------------------------------------
 [browsersync](https://github.com/belchior/armeiro/blob/master/doc/browsersync.markdown)     | npm i --save-dev gulp browser-sync
-[coffeescript](https://github.com/belchior/armeiro/blob/master/doc/coffeescript.markdown)    | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-uglify gulp-coffee
+[coffeeScript](https://github.com/belchior/armeiro/blob/master/doc/coffeeScript.markdown)    | npm i --save-dev gulp gulp-util del glob gulp-sourcemaps gulp-concat gulp-uglify gulp-coffee
 [compressImages](https://github.com/belchior/armeiro/blob/master/doc/compressImages.markdown)  | npm i --save-dev gulp gulp-util del glob gulp-imagemin imagemin-optipng
 [compressSVG](https://github.com/belchior/armeiro/blob/master/doc/compressSVG.markdown)     | npm i --save-dev gulp gulp-util del glob imagemin-svgo
 [copy](https://github.com/belchior/armeiro/blob/master/doc/copy.markdown)             | npm i --save-dev gulp gulp-util glob cp
