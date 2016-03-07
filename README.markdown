@@ -18,7 +18,7 @@ git clone https://github.com/belchior/armeiro.git
 ```
 
 ## Wiki
-Consulte a [documentação](https://github.com/belchior/armeiro/wiki) para entender mais sobre o projeto.
+Consulte a [documentação](https://github.com/belchior/armeiro/wiki) para saber mais sobre o projeto.
 
 ## Agradecimentos
 Este projeto é uma pequena retribuição a fantástica comunidade JavaScript, sem ela este projeto não seria possível. s2 ;-)
