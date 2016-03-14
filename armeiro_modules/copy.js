@@ -33,20 +33,45 @@ gulp.task('copy', function () {
   }
 
   function copyFile(orig, dest) {
-    fs.stat(dest, function (err, stat) {
-      if (err) {
-        cp(orig, dest, function (err) {
-          if (err) {
-            console.error(err);
-          }
-        });
-        return false;
+    fs.stat(dest, function (statError, stat) {
+      if (statError) {
+        if (lookLikeFile(dest)) {
+          mkdirp(path.dirname(dest), function () {
+            cp.sync(orig, dest);
+          });
+        } else if (lookLikeDir(dest)) {
+          mkdirp(dest, function () {
+            cp.sync(orig, path.join(dest, path.basename(orig)));
+          });
+        }
+        return;
       }
       if (stat.isDirectory()) {
         dest += path.basename(orig);
       }
       cp.sync(orig, dest);
     });
+  }
+
+  function lookLikeDir(pathName) {
+    return (
+      typeof pathName === 'string' &&
+      pathName.length > 0 &&
+      pathName[pathName.length-1].match(/[\\/]/)
+    ) || !path.extname(dest) ? true : false;
+  }
+
+  function lookLikeFile(pathName) {
+    var ext = [
+      '.html', '.css', '.js', '.svg', '.json',
+      '.jpg', '.jpeg', '.png', '.gif',
+      '.markdown', '.md',
+      '.coffee', '.less', '.sass', '.scss'
+    ];
+    return !lookLikeDir() &&
+      path.extname(dest) &&
+      ext.indexOf(path.extname(dest)) >= 0
+      ? true : false;
   }
 
 });
