@@ -7,6 +7,7 @@ gulp.task('copy', function () {
   var glob = require('glob');
   var gutil = require('gulp-util');
   var fs = require('fs');
+  var mkdirp = require('mkdirp');
   var path = require('path');
 
   if (!Array.isArray(armeiro.copy)) {
@@ -58,7 +59,7 @@ gulp.task('copy', function () {
       typeof pathName === 'string' &&
       pathName.length > 0 &&
       pathName[pathName.length-1].match(/[\\/]/)
-    ) || !path.extname(dest) ? true : false;
+    ) || !path.extname(pathName) ? true : false;
   }
 
   function lookLikeFile(pathName) {
@@ -69,8 +70,8 @@ gulp.task('copy', function () {
       '.coffee', '.less', '.sass', '.scss'
     ];
     return !lookLikeDir() &&
-      path.extname(dest) &&
-      ext.indexOf(path.extname(dest)) >= 0
+      path.extname(pathName) &&
+      ext.indexOf(path.extname(pathName)) >= 0
       ? true : false;
   }
 
