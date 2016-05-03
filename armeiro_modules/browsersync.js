@@ -19,7 +19,7 @@ gulp.task('browsersync:proxy', function () {
     rewriteRules: [
       {
         match: /Browsersync/g,
-        fn: function (match) {
+        fn: function (req, res, match) {
           return 'kittenz';
         }
       }
