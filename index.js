@@ -1,7 +1,7 @@
 
 require('./armeiro_modules/browsersync.js');
-require('./armeiro_modules/compressImages.js');
-require('./armeiro_modules/compressSVG.js');
+require('./armeiro_modules/image.js');
+require('./armeiro_modules/svg.js');
 require('./armeiro_modules/copy.js');
 require('./armeiro_modules/css.js');
 require('./armeiro_modules/js.js');
