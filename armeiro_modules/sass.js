@@ -2,32 +2,17 @@
 var armeiro = require('./armeirorc.js');
 var gulp = require('gulp');
 
-gulp.task('build:sass', function () {
-  var concat = require('gulp-concat');
-  var cssnano = require('gulp-cssnano');
-  var sass = require('gulp-sass');
-  var sourcemaps = require('gulp-sourcemaps');
-
-  return gulp.src(armeiro.sass.orig)
-  .pipe(sourcemaps.init())
-  .pipe(sass.sync().on('error', sass.logError))
-  .pipe(concat(armeiro.sass.mainFileCompressed))
-  .pipe(cssnano())
-  .pipe(sourcemaps.write('map'))
-  .pipe(gulp.dest(armeiro.sass.dest));
-});
-
 gulp.task('compile:sass', function () {
-  var concat = require('gulp-concat');
-  var cssnano = require('gulp-cssnano');
   var sass = require('gulp-sass');
   var sourcemaps = require('gulp-sourcemaps');
 
-  return gulp.src(armeiro.sass.orig)
-  .pipe(sourcemaps.init())
-  .pipe(sass.sync().on('error', sass.logError))
-  .pipe(sourcemaps.write('map'))
-  .pipe(gulp.dest(armeiro.sass.dest));
+  armeiro.sass.forEach(function (target) {
+    gulp.src(target.src)
+    .pipe(sourcemaps.init())
+    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(sourcemaps.write('map'))
+    .pipe(gulp.dest(target.dest));
+  });
 });
 
 gulp.task('compress:sass', function () {
@@ -35,12 +20,14 @@ gulp.task('compress:sass', function () {
   var sass = require('gulp-sass');
   var sourcemaps = require('gulp-sourcemaps');
 
-  return gulp.src(armeiro.sass.orig)
-  .pipe(sourcemaps.init())
-  .pipe(sass.sync().on('error', sass.logError))
-  .pipe(cssnano())
-  .pipe(sourcemaps.write('map'))
-  .pipe(gulp.dest(armeiro.sass.dest));
+  armeiro.sass.forEach(function (target) {
+    gulp.src(target.src)
+    .pipe(sourcemaps.init())
+    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(cssnano())
+    .pipe(sourcemaps.write('map'))
+    .pipe(gulp.dest(target.dest));
+  });
 });
 
 gulp.task('concat:sass', function () {
@@ -48,56 +35,57 @@ gulp.task('concat:sass', function () {
   var sass = require('gulp-sass');
   var sourcemaps = require('gulp-sourcemaps');
 
-  return gulp.src(armeiro.sass.orig)
-  .pipe(sourcemaps.init())
-  .pipe(sass.sync().on('error', sass.logError))
-  .pipe(concat(armeiro.sass.mainFile))
-  .pipe(sourcemaps.write('map'))
-  .pipe(gulp.dest(armeiro.sass.dest));
-});
-
-gulp.task('delete:sass', function () {
-  var deleteFiles = require('./deleteFiles.js');
-
-  deleteFiles({
-    orig: armeiro.sass.orig,
-    dest: armeiro.sass.dest,
-    extDest: '.css'
-  });
-  deleteFiles({
-    orig: armeiro.sass.orig,
-    dest: armeiro.sass.dest + 'map/',
-    extDest: '.css.map'
-  });
-  deleteFiles({
-    orig: armeiro.sass.dest + armeiro.sass.mainFile,
-    dest: armeiro.sass.dest,
-    extDest: '.css'
-  });
-  deleteFiles({
-    orig: armeiro.sass.dest + armeiro.sass.mainFileCompressed,
-    dest: armeiro.sass.dest,
-    extDest: '.css'
-  });
-  deleteFiles({
-    orig: armeiro.sass.dest + 'map/' + armeiro.sass.mainFileCompressed + '.map',
-    dest: armeiro.sass.dest + 'map/',
-    extDest: '.map'
+  armeiro.sass.forEach(function (target) {
+    gulp.src(target.src)
+    .pipe(sourcemaps.init())
+    .pipe(concat(target.name))
+    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(sourcemaps.write('map'))
+    .pipe(gulp.dest(target.dest));
   });
 });
 
-gulp.task('watch:sass:build', function () {
-  return gulp.watch(armeiro.sass.orig, ['build:sass']);
+gulp.task('zip:sass', function () {
+  var concat = require('gulp-concat');
+  var cssnano = require('gulp-cssnano');
+  var sass = require('gulp-sass');
+  var sourcemaps = require('gulp-sourcemaps');
+
+  armeiro.sass.forEach(function (target) {
+    gulp.src(target.src)
+    .pipe(sourcemaps.init())
+    .pipe(concat(target.name))
+    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(cssnano())
+    .pipe(sourcemaps.write('map'))
+    .pipe(gulp.dest(target.dest));
+  });
 });
 
 gulp.task('watch:sass:compile', function () {
-  return gulp.watch(armeiro.sass.orig, ['compile:sass']);
+  armeiro.sass.forEach(function (target) {
+    target.watch = target.watch || target.src;
+    gulp.watch(target.watch, ['compile:sass']);
+  });
 });
 
 gulp.task('watch:sass:compress', function () {
-  return gulp.watch(armeiro.sass.orig, ['compress:sass']);
+  armeiro.sass.forEach(function (target) {
+    target.watch = target.watch || target.src;
+    gulp.watch(target.watch, ['compress:sass']);
+  });
 });
 
 gulp.task('watch:sass:concat', function () {
-  return gulp.watch(armeiro.sass.orig, ['concat:sass']);
+  armeiro.sass.forEach(function (target) {
+    target.watch = target.watch || target.src;
+    gulp.watch(target.watch, ['concat:sass']);
+  });
+});
+
+gulp.task('watch:sass:zip', function () {
+  armeiro.sass.forEach(function (target) {
+    target.watch = target.watch || target.src;
+    gulp.watch(target.watch, ['zip:sass']);
+  });
 });
