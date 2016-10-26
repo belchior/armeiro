@@ -2,76 +2,62 @@
 var armeiro = require('./armeirorc.js');
 var gulp = require('gulp');
 
-gulp.task('build:css', function () {
-  var concat = require('gulp-concat');
-  var cssnano = require('gulp-cssnano');
-  var sourcemaps = require('gulp-sourcemaps');
-
-  return gulp.src(armeiro.css.orig)
-  .pipe(concat(armeiro.css.mainFileCompressed))
-  .pipe(sourcemaps.init())
-  .pipe(cssnano())
-  .pipe(sourcemaps.write('map'))
-  .pipe(gulp.dest(armeiro.css.dest));
-});
 
 gulp.task('compress:css', function () {
   var cssnano = require('gulp-cssnano');
   var sourcemaps = require('gulp-sourcemaps');
 
-  return gulp.src(armeiro.css.orig)
-  .pipe(sourcemaps.init())
-  .pipe(cssnano())
-  .pipe(sourcemaps.write('map'))
-  .pipe(gulp.dest(armeiro.css.dest));
+  armeiro.css.forEach(function (target) {
+    gulp.src(target.src)
+    .pipe(sourcemaps.init())
+    .pipe(cssnano())
+    .pipe(sourcemaps.write('map'))
+    .pipe(gulp.dest(target.dest));
+  });
 });
 
 gulp.task('concat:css', function () {
   var concat = require('gulp-concat');
 
-  return gulp.src(armeiro.css.orig)
-  .pipe(concat(armeiro.css.mainFile))
-  .pipe(gulp.dest(armeiro.css.dest));
-});
-
-gulp.task('delete:css', function () {
-  var deleteFiles = require('./deleteFiles.js');
-
-  deleteFiles({
-    orig: armeiro.css.orig,
-    dest: armeiro.css.dest,
-    extDest: '.css'
-  });
-  deleteFiles({
-    orig: armeiro.css.orig,
-    dest: armeiro.css.dest + 'map/',
-    extDest: '.css.map'
-  });
-  deleteFiles({
-    orig: armeiro.css.dest + armeiro.css.mainFile,
-    dest: armeiro.css.dest,
-    extDest: '.css'
-  });
-  deleteFiles({
-    orig: armeiro.css.dest + armeiro.css.mainFileCompressed,
-    dest: armeiro.css.dest,
-    extDest: '.css'
-  });
-  deleteFiles({
-    orig: armeiro.css.dest + 'map/' + armeiro.css.mainFileCompressed + '.map',
-    dest: armeiro.css.dest + 'map/',
-    extDest: '.map'
+  armeiro.css.forEach(function (target) {
+    gulp.src(target.src)
+    .pipe(concat(target.name))
+    .pipe(gulp.dest(target.dest));
   });
 });
 
-gulp.task('watch:css:build', function () {
-  return gulp.watch(armeiro.css.orig, ['build:css']);
+gulp.task('zip:css', function () {
+  var concat = require('gulp-concat');
+  var cssnano = require('gulp-cssnano');
+  var sourcemaps = require('gulp-sourcemaps');
+
+  armeiro.css.forEach(function (target) {
+    gulp.src(target.src)
+    .pipe(sourcemaps.init())
+    .pipe(concat(target.name))
+    .pipe(cssnano())
+    .pipe(sourcemaps.write('map'))
+    .pipe(gulp.dest(target.dest));
+  });
 });
 
 gulp.task('watch:css:compress', function () {
-  return gulp.watch(armeiro.css.orig, ['compress:css']);
+  armeiro.css.forEach(function (target) {
+    target.watch = target.watch || target.src;
+    gulp.watch(target.watch, ['compress:css']);
+  });
 });
 
 gulp.task('watch:css:concat', function () {
-  return gulp.watch(armeiro.css.orig, ['concat:css']);
+  armeiro.css.forEach(function (target) {
+    target.watch = target.watch || target.src;
+    gulp.watch(target.watch, ['concat:css']);
+  });
+});
+
+gulp.task('watch:css:zip', function () {
+  armeiro.css.forEach(function (target) {
+    target.watch = target.watch || target.src;
+    gulp.watch(target.watch, ['zip:css']);
+  });
 });
