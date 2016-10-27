@@ -12,7 +12,7 @@ gulp.task('compress:js', function () {
     .pipe(sourcemaps.init())
     .pipe(uglify())
     .pipe(sourcemaps.write('map'))
-    .pipe(gulp.dest(armeiro.js.dest));
+    .pipe(gulp.dest(target.dest));
   });
 });
 
@@ -23,9 +23,9 @@ gulp.task('concat:js', function () {
   armeiro.js.forEach(function (target) {
     gulp.src(target.src)
     .pipe(sourcemaps.init())
-    .pipe(concat(armeiro.js.name))
+    .pipe(concat(target.name))
     .pipe(sourcemaps.write('map'))
-    .pipe(gulp.dest(armeiro.js.dest));
+    .pipe(gulp.dest(target.dest));
   });
 });
 
@@ -37,10 +37,10 @@ gulp.task('zip:js', function () {
   armeiro.js.forEach(function (target) {
     gulp.src(target.src)
     .pipe(sourcemaps.init())
-    .pipe(concat(armeiro.js.name))
+    .pipe(concat(target.name))
     .pipe(uglify())
     .pipe(sourcemaps.write('map'))
-    .pipe(gulp.dest(armeiro.js.dest));
+    .pipe(gulp.dest(target.dest));
   });
 });
 
