@@ -3,11 +3,11 @@ var armeiro = require('./armeirorc.js');
 var gulp = require('gulp');
 
 gulp.task('compress:svg', function () {
-  var imageminSvgo = require('imagemin-svgo');
+  var svgmin = require('gulp-svgmin');
 
   armeiro.svg.forEach(function (target) {
-    gulp.src(target.orig)
-    .pipe(imageminSvgo()())
+    gulp.src(target.src)
+    .pipe(svgmin())
     .pipe(gulp.dest(target.dest));
   });
 });
