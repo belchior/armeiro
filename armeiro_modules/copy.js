@@ -3,7 +3,20 @@ var armeiro = require('./armeirorc.js');
 var gulp = require('gulp');
 
 gulp.task('copy', function () {
-  return armeiro.copy.forEach(function (target) {
-    gulp.src(target.src).pipe(gulp.dest(target.dest));
+  var merged = require(armeiro.pathModules + 'merge-stream.js')();
+
+  armeiro.copy.forEach(function (target) {
+    merged.add(
+      gulp.src(target.src)
+      .pipe(gulp.dest(target.dest))
+    );
+  });
+
+  return merged;
+});
+
+gulp.task('watch:copy', function () {
+  armeiro.copy.forEach(function (target) {
+    gulp.watch(target.watch, ['copy']);
   });
 });

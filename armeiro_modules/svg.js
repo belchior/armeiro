@@ -14,7 +14,6 @@ gulp.task('compress:svg', function () {
 
 gulp.task('watch:svg', function () {
   armeiro.svg.forEach(function (target) {
-    target.watch = target.watch || target.src;
     gulp.watch(target.watch, ['compress:svg']);
   });
 });

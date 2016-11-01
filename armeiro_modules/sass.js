@@ -64,28 +64,24 @@ gulp.task('zip:sass', function () {
 
 gulp.task('watch:sass:compile', function () {
   armeiro.sass.forEach(function (target) {
-    target.watch = target.watch || target.src;
     gulp.watch(target.watch, ['compile:sass']);
   });
 });
 
 gulp.task('watch:sass:compress', function () {
   armeiro.sass.forEach(function (target) {
-    target.watch = target.watch || target.src;
     gulp.watch(target.watch, ['compress:sass']);
   });
 });
 
 gulp.task('watch:sass:concat', function () {
   armeiro.sass.forEach(function (target) {
-    target.watch = target.watch || target.src;
     gulp.watch(target.watch, ['concat:sass']);
   });
 });
 
 gulp.task('watch:sass:zip', function () {
   armeiro.sass.forEach(function (target) {
-    target.watch = target.watch || target.src;
     gulp.watch(target.watch, ['zip:sass']);
   });
 });

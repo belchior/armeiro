@@ -70,28 +70,24 @@ gulp.task('zip:less', function () {
 
 gulp.task('watch:less:compile', function () {
   armeiro.less.forEach(function (target) {
-    target.watch = target.watch || target.src;
     gulp.watch(target.watch, ['compile:less']);
   });
 });
 
 gulp.task('watch:less:compress', function () {
   armeiro.less.forEach(function (target) {
-    target.watch = target.watch || target.src;
     gulp.watch(target.watch, ['compress:less']);
   });
 });
 
 gulp.task('watch:less:concat', function () {
   armeiro.less.forEach(function (target) {
-    target.watch = target.watch || target.src;
     gulp.watch(target.watch, ['concat:less']);
   });
 });
 
 gulp.task('watch:less:zip', function () {
   armeiro.less.forEach(function (target) {
-    target.watch = target.watch || target.src;
     gulp.watch(target.watch, ['zip:less']);
   });
 });
