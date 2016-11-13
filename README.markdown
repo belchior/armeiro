@@ -25,15 +25,15 @@ git clone https://github.com/belchior/armeiro.git
 ## Lista de módulos
 Modulo          | Comando para instalar as dependências do modulo
 --------------- | ---------------------------------------------------
-[[browsersync]] | npm i --save-dev gulp browser-sync
-[[copy]] | npm i --save-dev gulp
-[[css]] | npm i --save-dev gulp gulp-concat gulp-cssnano
-[[image]] | npm i --save-dev gulp gulp-imagemin imagemin-optipng
-[[js]] | npm i --save-dev gulp gulp-concat gulp-uglify
-[[less]] | npm i --save-dev gulp gulp-concat gulp-cssnano gulp-less
-[[sass]] | npm i --save-dev gulp gulp-concat gulp-cssnano gulp-sass
-[[sprite]] | npm i --save-dev gulp gulp.spritesmith
-[[svg]] | npm i --save-dev gulp gulp-svgmin
+[browsersync](https://github.com/belchior/armeiro/wiki/browsersync) | npm i --save-dev gulp browser-sync
+[copy](https://github.com/belchior/armeiro/wiki/copy) | npm i --save-dev gulp
+[css](https://github.com/belchior/armeiro/wiki/css) | npm i --save-dev gulp gulp-concat gulp-cssnano
+[image](https://github.com/belchior/armeiro/wiki/image) | npm i --save-dev gulp gulp-imagemin imagemin-optipng
+[js](https://github.com/belchior/armeiro/wiki/js) | npm i --save-dev gulp gulp-concat gulp-uglify
+[less](https://github.com/belchior/armeiro/wiki/less) | npm i --save-dev gulp gulp-concat gulp-cssnano gulp-less
+[sass](https://github.com/belchior/armeiro/wiki/sass) | npm i --save-dev gulp gulp-concat gulp-cssnano gulp-sass
+[sprite](https://github.com/belchior/armeiro/wiki/sprite) | npm i --save-dev gulp gulp.spritesmith
+[svg](https://github.com/belchior/armeiro/wiki/svg) | npm i --save-dev gulp gulp-svgmin
 
 
 ## Wiki
