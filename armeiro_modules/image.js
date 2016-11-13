@@ -22,7 +22,7 @@ gulp.task('compress:image', function () {
   return merged;
 });
 
-gulp.task('watch:image', function () {
+gulp.task('watch:image:compress', function () {
   armeiro.image.forEach(function (target) {
     gulp.watch(target.watch, ['compress:image']);
   });

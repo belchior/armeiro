@@ -9,62 +9,70 @@ var errorHandler = function (err) {
 
 gulp.task('compile:less', function () {
   var less = require('gulp-less');
-  var sourcemaps = require('gulp-sourcemaps');
+  var merged = require(armeiro.pathModules + 'merge-stream.js')();
 
   armeiro.less.forEach(function (target) {
-    gulp.src(target.src)
-    .pipe(sourcemaps.init())
-    .pipe(less().on('error', errorHandler))
-    .pipe(sourcemaps.write('map'))
-    .pipe(gulp.dest(target.dest));
+    merged.add(
+      gulp.src(target.src)
+      .pipe(less().on('error', errorHandler))
+      .pipe(gulp.dest(target.dest))
+    );
   });
+
+  return merged;
 });
 
 gulp.task('compress:less', function () {
   var less = require('gulp-less');
   var cssnano = require('gulp-cssnano');
-  var sourcemaps = require('gulp-sourcemaps');
+  var merged = require(armeiro.pathModules + 'merge-stream.js')();
 
   armeiro.less.forEach(function (target) {
-    gulp.src(target.src)
-    .pipe(sourcemaps.init())
-    .pipe(less().on('error', errorHandler))
-    .pipe(cssnano())
-    .pipe(sourcemaps.write('map'))
-    .pipe(gulp.dest(target.dest));
+    merged.add(
+      gulp.src(target.src)
+      .pipe(less().on('error', errorHandler))
+      .pipe(cssnano())
+      .pipe(gulp.dest(target.dest))
+    );
   });
+
+  return merged;
 });
 
 gulp.task('concat:less', function () {
   var concat = require('gulp-concat');
   var less = require('gulp-less');
-  var sourcemaps = require('gulp-sourcemaps');
+  var merged = require(armeiro.pathModules + 'merge-stream.js')();
 
   armeiro.less.forEach(function (target) {
-    gulp.src(target.src)
-    .pipe(sourcemaps.init())
-    .pipe(concat(target.name))
-    .pipe(less().on('error', errorHandler))
-    .pipe(sourcemaps.write('map'))
-    .pipe(gulp.dest(target.dest));
+    merged.add(
+      gulp.src(target.src)
+      .pipe(concat(target.name))
+      .pipe(less().on('error', errorHandler))
+      .pipe(gulp.dest(target.dest))
+    );
   });
+
+  return merged;
 });
 
 gulp.task('zip:less', function () {
   var concat = require('gulp-concat');
   var cssnano = require('gulp-cssnano');
   var less = require('gulp-less');
-  var sourcemaps = require('gulp-sourcemaps');
+  var merged = require(armeiro.pathModules + 'merge-stream.js')();
 
   armeiro.less.forEach(function (target) {
-    gulp.src(target.src)
-    .pipe(sourcemaps.init())
-    .pipe(concat(target.name))
-    .pipe(less().on('error', errorHandler))
-    .pipe(cssnano())
-    .pipe(sourcemaps.write('map'))
-    .pipe(gulp.dest(target.dest));
+    merged.add(
+      gulp.src(target.src)
+      .pipe(concat(target.name))
+      .pipe(less().on('error', errorHandler))
+      .pipe(cssnano())
+      .pipe(gulp.dest(target.dest))
+    );
   });
+
+  return merged;
 });
 
 

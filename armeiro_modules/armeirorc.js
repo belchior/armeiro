@@ -10,6 +10,7 @@ try {
   armeiro = addWatch(JSON.parse(armeiro));
 } catch (e) {
   armeiro = require(projectRoot + 'package.json').armeiro;
+  armeiro = addWatch(armeiro);
   if (!armeiro) {
     gutil.log(gutil.colors.red('Armeiro: Erro ao carregar as configurações do projeto'));
     gutil.log(
@@ -24,7 +25,7 @@ armeiro.pathModules = projectRoot + 'armeiro/armeiro_modules/';
 module.exports = armeiro;
 
 function addWatch(config) {
-  var modules = ['copy', 'image', 'svg', 'css', 'js', 'less', 'sass', 'sprite'];
+  var modules = ['copy', 'css', 'image', 'js', 'less', 'sass', 'sprite', 'svg'];
   modules.forEach(function (mod) {
     if (!config[mod] || !Array.isArray(config[mod])) {
       return;

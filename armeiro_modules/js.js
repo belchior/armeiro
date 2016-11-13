@@ -5,15 +5,12 @@ var gulp = require('gulp');
 
 gulp.task('compress:js', function () {
   var merged = require(armeiro.pathModules + 'merge-stream.js')();
-  var sourcemaps = require('gulp-sourcemaps');
   var uglify = require('gulp-uglify');
 
   armeiro.js.forEach(function (target) {
     merged.add(
       gulp.src(target.src)
-      .pipe(sourcemaps.init())
       .pipe(uglify())
-      .pipe(sourcemaps.write('map'))
       .pipe(gulp.dest(target.dest))
     );
   });
@@ -24,14 +21,13 @@ gulp.task('compress:js', function () {
 gulp.task('concat:js', function () {
   var concat = require('gulp-concat');
   var merged = require(armeiro.pathModules + 'merge-stream.js')();
-  var sourcemaps = require('gulp-sourcemaps');
 
   armeiro.js.forEach(function (target) {
-    gulp.src(target.src)
-    .pipe(sourcemaps.init())
-    .pipe(concat(target.name))
-    .pipe(sourcemaps.write('map'))
-    .pipe(gulp.dest(target.dest));
+    merged.add(
+      gulp.src(target.src)
+      .pipe(concat(target.name))
+      .pipe(gulp.dest(target.dest))
+    );
   });
 
   return merged;
@@ -40,16 +36,13 @@ gulp.task('concat:js', function () {
 gulp.task('zip:js', function () {
   var concat = require('gulp-concat');
   var merged = require(armeiro.pathModules + 'merge-stream.js')();
-  var sourcemaps = require('gulp-sourcemaps');
   var uglify = require('gulp-uglify');
 
   armeiro.js.forEach(function (target) {
     merged.add(
       gulp.src(target.src)
-      .pipe(sourcemaps.init())
       .pipe(concat(target.name))
       .pipe(uglify())
-      .pipe(sourcemaps.write('map'))
       .pipe(gulp.dest(target.dest))
     );
   });

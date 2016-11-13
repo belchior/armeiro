@@ -6,14 +6,11 @@ var gulp = require('gulp');
 gulp.task('compress:css', function () {
   var cssnano = require('gulp-cssnano');
   var merged = require(armeiro.pathModules + 'merge-stream.js')();
-  var sourcemaps = require('gulp-sourcemaps');
 
   armeiro.css.forEach(function (target) {
     merged.add(
       gulp.src(target.src)
-      .pipe(sourcemaps.init())
       .pipe(cssnano())
-      .pipe(sourcemaps.write('map'))
       .pipe(gulp.dest(target.dest))
     );
   });
@@ -38,15 +35,12 @@ gulp.task('zip:css', function () {
   var concat = require('gulp-concat');
   var cssnano = require('gulp-cssnano');
   var merged = require(armeiro.pathModules + 'merge-stream.js')();
-  var sourcemaps = require('gulp-sourcemaps');
 
   armeiro.css.forEach(function (target) {
     merged.add(
       gulp.src(target.src)
-      .pipe(sourcemaps.init())
       .pipe(concat(target.name))
       .pipe(cssnano())
-      .pipe(sourcemaps.write('map'))
       .pipe(gulp.dest(target.dest))
     );
   });

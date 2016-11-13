@@ -4,62 +4,70 @@ var gulp = require('gulp');
 
 gulp.task('compile:sass', function () {
   var sass = require('gulp-sass');
-  var sourcemaps = require('gulp-sourcemaps');
+  var merged = require(armeiro.pathModules + 'merge-stream.js')();
 
   armeiro.sass.forEach(function (target) {
-    gulp.src(target.src)
-    .pipe(sourcemaps.init())
-    .pipe(sass.sync().on('error', sass.logError))
-    .pipe(sourcemaps.write('map'))
-    .pipe(gulp.dest(target.dest));
+    merged.add(
+      gulp.src(target.src)
+      .pipe(sass.sync().on('error', sass.logError))
+      .pipe(gulp.dest(target.dest))
+    );
   });
+
+  return merged;
 });
 
 gulp.task('compress:sass', function () {
   var cssnano = require('gulp-cssnano');
   var sass = require('gulp-sass');
-  var sourcemaps = require('gulp-sourcemaps');
+  var merged = require(armeiro.pathModules + 'merge-stream.js')();
 
   armeiro.sass.forEach(function (target) {
-    gulp.src(target.src)
-    .pipe(sourcemaps.init())
-    .pipe(sass.sync().on('error', sass.logError))
-    .pipe(cssnano())
-    .pipe(sourcemaps.write('map'))
-    .pipe(gulp.dest(target.dest));
+    merged.add(
+      gulp.src(target.src)
+      .pipe(sass.sync().on('error', sass.logError))
+      .pipe(cssnano())
+      .pipe(gulp.dest(target.dest))
+    );
   });
+
+  return merged;
 });
 
 gulp.task('concat:sass', function () {
   var concat = require('gulp-concat');
   var sass = require('gulp-sass');
-  var sourcemaps = require('gulp-sourcemaps');
+  var merged = require(armeiro.pathModules + 'merge-stream.js')();
 
   armeiro.sass.forEach(function (target) {
-    gulp.src(target.src)
-    .pipe(sourcemaps.init())
-    .pipe(concat(target.name))
-    .pipe(sass.sync().on('error', sass.logError))
-    .pipe(sourcemaps.write('map'))
-    .pipe(gulp.dest(target.dest));
+    merged.add(
+      gulp.src(target.src)
+      .pipe(concat(target.name))
+      .pipe(sass.sync().on('error', sass.logError))
+      .pipe(gulp.dest(target.dest))
+    );
   });
+
+  return merged;
 });
 
 gulp.task('zip:sass', function () {
   var concat = require('gulp-concat');
   var cssnano = require('gulp-cssnano');
   var sass = require('gulp-sass');
-  var sourcemaps = require('gulp-sourcemaps');
+  var merged = require(armeiro.pathModules + 'merge-stream.js')();
 
   armeiro.sass.forEach(function (target) {
-    gulp.src(target.src)
-    .pipe(sourcemaps.init())
-    .pipe(concat(target.name))
-    .pipe(sass.sync().on('error', sass.logError))
-    .pipe(cssnano())
-    .pipe(sourcemaps.write('map'))
-    .pipe(gulp.dest(target.dest));
+    merged.add(
+      gulp.src(target.src)
+      .pipe(concat(target.name))
+      .pipe(sass.sync().on('error', sass.logError))
+      .pipe(cssnano())
+      .pipe(gulp.dest(target.dest))
+    );
   });
+
+  return merged;
 });
 
 gulp.task('watch:sass:compile', function () {

@@ -8,5 +8,4 @@ require('./armeiro_modules/js.js');
 require('./armeiro_modules/less.js');
 require('./armeiro_modules/sass.js');
 require('./armeiro_modules/sprite.js');
-require('./armeiro_modules/doc.js');
 module.exports = require('./armeiro_modules/armeirorc.js');
