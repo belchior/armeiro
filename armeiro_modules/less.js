@@ -13,7 +13,7 @@ gulp.task('compile:less', function () {
 
   armeiro.less.forEach(function (target) {
     merged.add(
-      gulp.src(target.src)
+      gulp.src(target.src, target.options)
       .pipe(less().on('error', errorHandler))
       .pipe(gulp.dest(target.dest))
     );
@@ -29,7 +29,7 @@ gulp.task('compress:less', function () {
 
   armeiro.less.forEach(function (target) {
     merged.add(
-      gulp.src(target.src)
+      gulp.src(target.src, target.options)
       .pipe(less().on('error', errorHandler))
       .pipe(cssnano())
       .pipe(gulp.dest(target.dest))
@@ -46,7 +46,7 @@ gulp.task('concat:less', function () {
 
   armeiro.less.forEach(function (target) {
     merged.add(
-      gulp.src(target.src)
+      gulp.src(target.src, target.options)
       .pipe(concat(target.name))
       .pipe(less().on('error', errorHandler))
       .pipe(gulp.dest(target.dest))
@@ -64,7 +64,7 @@ gulp.task('zip:less', function () {
 
   armeiro.less.forEach(function (target) {
     merged.add(
-      gulp.src(target.src)
+      gulp.src(target.src, target.options)
       .pipe(concat(target.name))
       .pipe(less().on('error', errorHandler))
       .pipe(cssnano())

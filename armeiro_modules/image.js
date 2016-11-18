@@ -9,7 +9,7 @@ gulp.task('compress:image', function () {
 
   armeiro.image.forEach(function (target) {
     merged.add(
-      gulp.src(target.src)
+      gulp.src(target.src, target.options)
       .pipe(imagemin({
         verbose: true,
         progressive: true,

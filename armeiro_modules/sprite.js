@@ -9,7 +9,7 @@ gulp.task('sprite', function () {
 
   armeiro.sprite.forEach(function (target) {
     merged.add(
-      gulp.src(target.src)
+      gulp.src(target.src, target.options)
       .pipe(spritesmith({
         algorithm: target.algorithm,
         imgName: target.imgName,

@@ -9,7 +9,7 @@ gulp.task('compress:css', function () {
 
   armeiro.css.forEach(function (target) {
     merged.add(
-      gulp.src(target.src)
+      gulp.src(target.src, target.options)
       .pipe(cssnano())
       .pipe(gulp.dest(target.dest))
     );
@@ -22,7 +22,7 @@ gulp.task('concat:css', function () {
 
   armeiro.css.forEach(function (target) {
     merged.add(
-      gulp.src(target.src)
+      gulp.src(target.src, target.options)
       .pipe(concat(target.name))
       .pipe(gulp.dest(target.dest))
     );
@@ -38,7 +38,7 @@ gulp.task('zip:css', function () {
 
   armeiro.css.forEach(function (target) {
     merged.add(
-      gulp.src(target.src)
+      gulp.src(target.src, target.options)
       .pipe(concat(target.name))
       .pipe(cssnano())
       .pipe(gulp.dest(target.dest))

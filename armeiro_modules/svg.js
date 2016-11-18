@@ -8,7 +8,7 @@ gulp.task('compress:svg', function () {
 
   armeiro.svg.forEach(function (target) {
     merged.add(
-      gulp.src(target.src)
+      gulp.src(target.src, target.options)
       .pipe(svgmin())
       .pipe(gulp.dest(target.dest))
     );

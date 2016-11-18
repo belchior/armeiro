@@ -8,7 +8,7 @@ gulp.task('compile:sass', function () {
 
   armeiro.sass.forEach(function (target) {
     merged.add(
-      gulp.src(target.src)
+      gulp.src(target.src, target.options)
       .pipe(sass.sync().on('error', sass.logError))
       .pipe(gulp.dest(target.dest))
     );
@@ -24,7 +24,7 @@ gulp.task('compress:sass', function () {
 
   armeiro.sass.forEach(function (target) {
     merged.add(
-      gulp.src(target.src)
+      gulp.src(target.src, target.options)
       .pipe(sass.sync().on('error', sass.logError))
       .pipe(cssnano())
       .pipe(gulp.dest(target.dest))
@@ -41,7 +41,7 @@ gulp.task('concat:sass', function () {
 
   armeiro.sass.forEach(function (target) {
     merged.add(
-      gulp.src(target.src)
+      gulp.src(target.src, target.options)
       .pipe(concat(target.name))
       .pipe(sass.sync().on('error', sass.logError))
       .pipe(gulp.dest(target.dest))
@@ -59,7 +59,7 @@ gulp.task('zip:sass', function () {
 
   armeiro.sass.forEach(function (target) {
     merged.add(
-      gulp.src(target.src)
+      gulp.src(target.src, target.options)
       .pipe(concat(target.name))
       .pipe(sass.sync().on('error', sass.logError))
       .pipe(cssnano())

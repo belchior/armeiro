@@ -7,7 +7,7 @@ gulp.task('copy', function () {
 
   armeiro.copy.forEach(function (target) {
     merged.add(
-      gulp.src(target.src)
+      gulp.src(target.src, target.options)
       .pipe(gulp.dest(target.dest))
     );
   });

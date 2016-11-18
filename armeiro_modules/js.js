@@ -9,7 +9,7 @@ gulp.task('compress:js', function () {
 
   armeiro.js.forEach(function (target) {
     merged.add(
-      gulp.src(target.src)
+      gulp.src(target.src, target.options)
       .pipe(uglify())
       .pipe(gulp.dest(target.dest))
     );
@@ -24,7 +24,7 @@ gulp.task('concat:js', function () {
 
   armeiro.js.forEach(function (target) {
     merged.add(
-      gulp.src(target.src)
+      gulp.src(target.src, target.options)
       .pipe(concat(target.name))
       .pipe(gulp.dest(target.dest))
     );
@@ -40,7 +40,7 @@ gulp.task('zip:js', function () {
 
   armeiro.js.forEach(function (target) {
     merged.add(
-      gulp.src(target.src)
+      gulp.src(target.src, target.options)
       .pipe(concat(target.name))
       .pipe(uglify())
       .pipe(gulp.dest(target.dest))
