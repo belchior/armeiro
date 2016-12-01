@@ -1,0 +1,22 @@
+{
+  "name": "armeiro",
+  "version": "1.1.0",
+  "description": "Armeiro é uma ferramenta de automatização de tarefas relacionadas ao desenvolvimento front-end.",
+  "author": "Belchior Oliveira",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/belchior/armeiro.git"
+  },
+  "keywords": [
+    "armeiro",
+    "gulp",
+    "compile",
+    "concat",
+    "compress",
+    "sprite",
+    "watch",
+    "clear"
+  ]
+}

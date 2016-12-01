@@ -3,7 +3,7 @@ var armeiro;
 var gutil = require('gulp-util');
 var fs = require('fs');
 var path = require('path');
-var projectRoot = path.resolve(__dirname, '../../') + '/';
+var projectRoot = __dirname.split('node_modules').shift();
 
 try {
   armeiro = fs.readFileSync(projectRoot + '.armeirorc', 'utf-8');
@@ -21,7 +21,7 @@ try {
   }
 }
 
-armeiro.pathModules = projectRoot + 'armeiro/armeiro_modules/';
+armeiro.pathModules = __dirname + '/';
 module.exports = armeiro;
 
 function addWatch(config) {
