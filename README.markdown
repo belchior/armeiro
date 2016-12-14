@@ -13,7 +13,7 @@ Ter familiaridade com command-line (ferramenta de linha de comando) como o Termi
 
 
 ## Instalando Armeiro
-Execute o comando abaixo para isntalar
+Execute o comando abaixo para instalar
 ```shell
 npm i -D https://github.com/belchior/armeiro.git
 ```
