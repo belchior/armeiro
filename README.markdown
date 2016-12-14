@@ -15,7 +15,7 @@ Ter familiaridade com command-line (ferramenta de linha de comando) como o Termi
 ## Instalando Armeiro
 Execute o comando abaixo para isntalar
 ```shell
-npm i -D https://github.com/belchior/armeiro/archive/armeiro-1.1.0.tar.gz
+npm i -D https://github.com/belchior/armeiro.git
 ```
 
 
