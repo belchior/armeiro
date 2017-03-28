@@ -12,9 +12,7 @@ gulp.task('browsersync:proxy', function () {
       armeiro.browsersync.dest
     ],
     files: [
-      armeiro.browsersync.dest + '*.html',
-      armeiro.browsersync.dest + '*.css',
-      armeiro.browsersync.dest + '*.js'
+      armeiro.browsersync.dest + '*.{css,js}'
     ],
     rewriteRules: [
       {
@@ -36,8 +34,7 @@ gulp.task('browsersync:server', function () {
       baseDir: armeiro.browsersync.dest
     },
     files: [
-      armeiro.browsersync.dest + '*.css',
-      armeiro.browsersync.dest + '*.js'
+      armeiro.browsersync.dest + '*.{html,css,js}'
     ]
   });
 });
