@@ -23,7 +23,7 @@ npm i -D https://github.com/belchior/armeiro.git
 Modulo          | Comando para instalar as dependências do modulo
 --------------- | ---------------------------------------------------
 [browsersync](https://github.com/belchior/armeiro/wiki/browsersync) | npm i -D gulp browser-sync
-[copy](https://github.com/belchior/armeiro/wiki/copy) | npm i -D gulp
+[copy](https://github.com/belchior/armeiro/wiki/copy) | npm i -D gulp gulp-rename
 [css](https://github.com/belchior/armeiro/wiki/css) | npm i -D gulp gulp-concat gulp-cssnano
 [image](https://github.com/belchior/armeiro/wiki/image) | npm i -D gulp gulp-imagemin imagemin-optipng
 [js](https://github.com/belchior/armeiro/wiki/js) | npm i -D gulp gulp-concat gulp-uglify
