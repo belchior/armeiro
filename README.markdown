@@ -1,3 +1,5 @@
+[![GitHub version](https://badge.fury.io/gh/belchior%2Farmeiro.svg)](https://badge.fury.io/gh/belchior%2Farmeiro)
+
 # Armeiro
 Armeiro é uma ferramenta de automatização de tarefas relacionadas ao desenvolvimento front-end e já vem com alguns módulos instalados e prontos para serem usados, confirma a lista de módulos para saber mais.
 
