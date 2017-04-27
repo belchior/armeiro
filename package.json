@@ -1,6 +1,6 @@
 {
   "name": "armeiro",
-  "version": "1.2.3",
+  "version": "1.3.4",
   "description": "Armeiro é uma ferramenta de automatização de tarefas relacionadas ao desenvolvimento front-end.",
   "author": "Belchior Oliveira",
   "license": "MIT",
@@ -18,5 +18,23 @@
     "sprite",
     "watch",
     "clear"
-  ]
+  ],
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "jest": "^19.0.2"
+  },
+  "armeiro": {
+    "browsersync": {},
+    "copy": [],
+    "css": [],
+    "image": [],
+    "js": [],
+    "less": [],
+    "sass": [],
+    "sprite": [],
+    "svg": []
+  }
 }
