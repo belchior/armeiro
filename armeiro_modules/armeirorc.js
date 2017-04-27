@@ -3,22 +3,25 @@ var armeiro;
 var gutil = require('gulp-util');
 var fs = require('fs');
 var path = require('path');
-var projectRoot = __dirname.split('node_modules').shift();
+// var projectRoot = __dirname.split('node_modules').shift();
+var projectRoot = process.cwd() + '/';
 
-try {
+if (fs.existsSync(projectRoot + '.armeirorc')) {
   armeiro = fs.readFileSync(projectRoot + '.armeirorc', 'utf-8');
-  armeiro = addWatch(JSON.parse(armeiro));
-} catch (e) {
+  armeiro = armeiro ? addWatch(JSON.parse(armeiro)) : armeiro;
+
+} else if (fs.existsSync(projectRoot + 'package.json')) {
   armeiro = require(projectRoot + 'package.json').armeiro;
-  armeiro = addWatch(armeiro);
-  if (!armeiro) {
-    gutil.log(gutil.colors.red('Armeiro: Erro ao carregar as configurações do projeto'));
-    gutil.log(
-      gutil.colors.red('Armeiro: Consulte a documentação em:'),
-      gutil.colors.underline('https://github.com/belchior/armeiro')
-    );
-    process.exit();
-  }
+  armeiro = armeiro ? addWatch(armeiro) : armeiro;
+}
+
+if (!armeiro) {
+  gutil.log(gutil.colors.red('Armeiro: Erro ao carregar as configurações do projeto'));
+  gutil.log(
+    gutil.colors.red('Armeiro: Consulte a documentação em:'),
+    gutil.colors.underline('https://github.com/belchior/armeiro')
+  );
+  process.exit();
 }
 
 armeiro.pathModules = __dirname + '/';

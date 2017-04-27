@@ -1,8 +1,8 @@
 
 # directories
-build
-src
-node_modules
+build/
+coverage/
+node_modules/
 
 # files
 .DS_Store
